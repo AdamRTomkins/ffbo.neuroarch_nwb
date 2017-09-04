@@ -4,7 +4,7 @@ except ImportError:
     from distutils.core import setup
 
 setup(
-    name="neuroarch_nwp",
+    name="neuroarch_nwb",
     version="0.1.1",
     description="",
     long_description=open('README.md').read(),
