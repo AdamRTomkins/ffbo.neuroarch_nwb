@@ -1,6 +1,7 @@
 import nwb
 from nwb.validate import validate_file
 import h5py
+import matplotlib.pyplot as plt
 
 class NWB_file(object):
     def __init__(self,filename,validate=False):
@@ -36,11 +37,19 @@ class NWB_dataset(object):
     # A class to hold a dataset and the required simple functions
     # TODO: Expand to non 1D arrays
     
-    def __init__(self, dataset):
+    def __init__(self, dataset, dataset_id='dataset_id'):
         """ A dataset has three keys: """
+        self.dataset_id = dataset_id
         self.dataset = dataset
         self.num_samples = self.dataset['num_samples'][()]
 
+    def generate_image( self ):
+        """ generate a image of time_seris data """
+        # TODO: Add intelligent axis labeling.
+
+        plt.plot(self.dataset['timestamps'][:],self.dataset['data'][:])
+        plt.savefig("%s.png" % self.dataset_id, bbox_inches='tight')
+                
             
     def get_data( self ):
         """ Return the whole dataset """
